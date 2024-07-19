@@ -58,11 +58,16 @@ unsigned int memGen6()
 // Direct Mapped Cache Simulator
 cacheResType cacheSimDM(unsigned int addr)
 {
-    // This function accepts the memory address for the memory transaction and
-    // returns whether it caused a cache miss or a cache hit
+    unsigned int numLines = CACHE_SIZE / lineSize;
+        unsigned int index = (addr / lineSize) % numLines;
+        unsigned int tag = addr / (lineSize * numLines);
 
-    // The current implementation assumes there is no cache; so, every transaction is a miss
-    return MISS;
+        if (directMappedCache[index].valid && directMappedCache[index].tag == tag) {
+            return HIT;
+        } else {
+            directMappedCache[index].valid = true;
+            directMappedCache[index].tag = tag;
+            return MISS;
 }
 
 // Fully Associative Cache Simulator
