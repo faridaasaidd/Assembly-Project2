@@ -73,10 +73,16 @@ cacheResType cacheSimDM(unsigned int addr)
 // Fully Associative Cache Simulator
 cacheResType cacheSimFA(unsigned int addr)
 {
-    // This function accepts the memory address for the read and
-    // returns whether it caused a cache miss or a cache hit
+    unsigned int tag = addr / lineSize;
+    for (auto &line : fullyAssocCache) {
+        if (line.valid && line.tag == tag) {
+            return HIT;
+        }
+    }
 
-    // The current implementation assumes there is no cache; so, every transaction is a miss
+    int replaceIndex = rand_() % fullyAssocCache.size();
+    fullyAssocCache[replaceIndex].valid = true;
+    fullyAssocCache[replaceIndex].tag = tag;
     return MISS;
 }
 char *msg[2] = {"Miss","Hit"};
