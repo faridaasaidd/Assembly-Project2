@@ -133,6 +133,11 @@ char *msg[2] = {"Miss","Hit"};
             0x00000280, 0x000002A0, 0x000002C0, 0x000002E0, 0x00000300,
             0x00000320, 0x00000340, 0x00000360, 0x00000380, 0x000003A0
     };
+    vector<unsigned int> conflictAddresses = {
+            0x00000000, 0x00001000, 0x02000000, 0x02000000, // All these addresses will map to the same index in a direct-mapped cache
+            0x00000000, 0x02000000, 0x00002010, 0x00002000
+    };
+
     unsigned int hit = 0;
     cacheResType r;
 
