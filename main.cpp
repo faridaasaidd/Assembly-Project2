@@ -152,6 +152,7 @@ int main()
         // change parameters passed to simulation according to the tested generator, line size, and cache type
         runSimulation(memGen6, conflictAddresses, i, cacheSimFA, fullyAssocCache, 0);
     }
+    cout << endl;
     cout << "Direct Map: " << endl;
     for(int i=16; i<129 ;i*=2) {
         vector<CacheLine> directMappedCache(CACHE_SIZE / i);
