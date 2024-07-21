@@ -88,7 +88,42 @@ cacheResType cacheSimFA(unsigned int addr)
 char *msg[2] = {"Miss","Hit"};
 
 #define		NO_OF_Iterations	100		// CHange to 1,000,000
-int main()
+        void runSimulation(unsigned int (*memGen)(), vector<unsigned int>& testAddresses, unsigned int lineSize, cacheResType (*cacheSim)(vector<CacheLine>&, unsigned int, unsigned int), vector<CacheLine>& cache, bool useMemGen)
+    {
+        double hitRatio;
+        // Initialize cache
+        fill(cache.begin(), cache.end(), CacheLine{false, 0});
+
+        unsigned int hit = 0;
+        unsigned int addr;
+        cacheResType r;
+
+        if (useMemGen) {
+            for (int inst = 0; inst < 1000000; inst++) {
+                addr = memGen();
+                r = cacheSim(cache, addr, lineSize);
+                if (r == HIT) hit++;
+            }
+            hitRatio = 100.0 * hit / 1000000;
+        } else {
+            for (unsigned int addr : testAddresses) {
+                r = cacheSim(cache, addr, lineSize);
+                if (r == HIT) hit++;
+#if DBG
+                cout << "Address: 0x" << setfill('0') << setw(8) << hex << addr
+                     << " - " << msg[r] << endl;
+#endif
+            }
+            hitRatio = 100.0 * hit / 8;
+
+        }
+        cout << "Hit ratio = " << hitRatio << "%" << endl;
+    }
+
+
+}
+
+            int main()
 {
     unsigned int hit = 0;
     cacheResType r;
