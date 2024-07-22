@@ -46,3 +46,13 @@ This project contains a cache simulator that supports both direct-mapped and ful
 -  'runSimulation(memGen6, conflictAddresses, i, cacheSimFA, fullyAssocCache, 1)' using a format like this one, set the last parameter to 1 if a memory generator function will be used to run the simulator, and set it to 0 if manually-made test addresses in an array will be used.
 -  Using this same format, replace 'memGem6' with the required memory generator to be tested, or if using test addresses in an array, replace 'conflictAddresses' with the name of the array
 -  If manual test addresses are uses, the hit/miss of each address is outputed one by one in order to be able to validate the output
+
+
+## Contributions
+- We all worked together in writing the code, debugging, and creating the test-cases.
+- Hoda created the tables and the graphs from the results that we obtained using the memory generators.
+- Laila did test case 1 and test case 2 that tests the compulsory and conflict misses.
+- Farida did test case 3 that tests the capacity miss, and did the readme file, and the conclusion.
+
+
+
