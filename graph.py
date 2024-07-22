@@ -20,13 +20,10 @@ memgen4 = [99.9731, 99.9865, 99.9933, 99.9966]
 memgen5 = [98.5682, 99.2797, 99.6639, 99.8248]
 memgen6 = [20.0801, 1.9648, 50.9807, 75.4829]
 
-# Colors for each memory generator line
 colors = ['blue', 'green', 'red', 'purple', 'orange', 'brown']
 
-# Create a new figure
 plt.figure(figsize=(12, 8))
 
-# Plot each memory generator's data without labels but with increased line thickness
 def plot_with_labels(x, y, label, color):
     plt.plot(x, y, label=label, marker='o', color=color, linewidth=1)
 
@@ -42,7 +39,7 @@ plt.title('Fully Associative Cache Hit Ratios by Different Memory Generators ')
 plt.xlabel('Line Size (bytes)')
 plt.ylabel('Hit Ratio (%)')
 
-plt.ylim(93.7, 100.5)
+#plt.ylim(93.7, 100.5)
 # Add grid
 plt.grid(True)
 
